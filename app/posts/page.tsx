@@ -1,7 +1,11 @@
 export const dynamic = "force-static";
+import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 export default async function Posts() {
+  const session = await auth();
+  if (!session?.user) return <div>WHo r u?</div>;
+
   const posts = await prisma.post.findMany({
     include: {
       author: true,

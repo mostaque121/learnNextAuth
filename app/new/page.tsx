@@ -7,6 +7,9 @@ import { redirect } from "next/navigation";
 
 export default async function NewPost() {
   const session = await auth();
+  console.log(session?.user);
+  if (!session?.user) return <div>WHo r u?</div>;
+
   async function createPost(formData: FormData) {
     "use server";
 
