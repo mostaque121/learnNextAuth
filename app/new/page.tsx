@@ -1,3 +1,4 @@
+export const dynamic = "force-static";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";

@@ -1,3 +1,4 @@
+export const dynamic = "force-static";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 export default async function Posts() {

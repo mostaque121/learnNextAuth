@@ -1,3 +1,6 @@
+export const dynamic = "force-static";
+import Link from "next/link";
+
 import { auth } from "@/auth";
 import SignIn from "@/components/sign-in";
 import { SignOut } from "@/components/signout-button";
@@ -5,7 +8,6 @@ import { prisma } from "@/lib/prisma";
 
 export default async function Home() {
   const session = await auth();
-  console.log(session?.user);
   const users = await prisma.user.findMany();
   if (!session?.user)
     return (
@@ -19,6 +21,12 @@ export default async function Home() {
         Superblog
       </h1>
       <h2>name : {session.user.name}</h2>
+      <div>
+        <Link href={"/posts"}>posts</Link>
+      </div>
+      <div>
+        <Link href={"/new"}>Create</Link>
+      </div>
       <SignOut />
       <ol className="list-decimal list-inside font-[family-name:var(--font-geist-sans)]">
         {users.map((user) => (
